@@ -1,0 +1,45 @@
+{% extends "_notebook.html" %}
+{%- block js %}
+<!--
+function openwin() {
+  window.open('./list_ref_place', '', 'width=500,height=400');
+}
+-->
+{% endblock js -%}
+{% block content %}
+  {% call form() %}
+  <div class="fieldWrapper">
+  <input type="hidden" name="key" value="{{ notebook.key().id() }}" />
+  </div>
+  <div class="fieldWrapper">
+  <p>レシートの登録</p>
+  </div>
+  <div class="fieldWrapper">
+    <p>{{ form['date'].label(class="Date")|safe }}</p>
+    <p>{{ form['date'](value_=today)|safe() }}</p>
+  </div>
+  <div class="fieldWrapper">
+    <p>{{ form['sum'].label(class="Sum")|safe }}</p>
+    <p>{{ form['sum'](value_=0)|safe() }} 円</p>
+  </div>
+  <div id="place">
+  <div class="fieldWrapper">
+    <p>
+      {{ form['place'].label(class="Place")|safe }}&nbsp;
+      <a href="javascript:openwin()" class="ref">※参照</a>
+    </p>
+    <p>{{ form['place']()|safe() }} 
+  </div>
+  </div>
+  <div class="fieldWrapper"> 
+    <p>{{ form['memo'].label(class="Memo")|safe }}</p>
+    <p>{{ form['memo']()|safe() }}
+  </div>
+  <br />
+  {% if notebook.is_itemized %}
+    {{ form.default_actions(label="レシートを登録して明細登録画面へ")|safe }}
+  {% else %}
+    {{ form.default_actions(label="レシートを登録")|safe }}
+  {% endif %}
+  {% endcall %}
+{% endblock content %}

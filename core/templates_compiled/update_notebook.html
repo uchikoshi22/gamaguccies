@@ -1,0 +1,23 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/update_notebook.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_manage.html', '/update_notebook.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_content(context, environment=environment):
+    l_form = context.resolve('form')
+    t_1 = environment.filters['safe']
+    if 0: yield None
+    yield u'\n  %s\n  <p class="supplement">\u3059\u3079\u3066\u5f8c\u304b\u3089\u5909\u66f4\u304c\u53ef\u80fd\u3067\u3059\u3002</p>\n  <p class="supplement">\u300c\u30e1\u30a4\u30f3\u3067\u4f7f\u3046\u300d\u306b\u30c1\u30a7\u30c3\u30af\u3092\u3064\u3051\u305f\u3089\u3053\u306e\u30ce\u30fc\u30c8\u304c\u30e1\u30a4\u30f3\u306e\u30ce\u30fc\u30c8\u3068\u3057\u3066\u767b\u9332\u3055\u308c\u307e\u3059</p>\n  <p class="supplement">\u300c\u660e\u7d30\u3082\u8a18\u9332\u3059\u308b\u300d\u306b\u30c1\u30a7\u30c3\u30af\u3092\u4ed8\u3051\u305f\u3089\u51fa\u8cbb\u306e\u767b\u9332\u30fb\u7ba1\u7406\u3067\u30ec\u30b7\u30fc\u30c8\u5358\u4f4d\u3060\u3051\u3067\u306a\u304f\u3001\u5546\u54c1\u4e00\u54c1\u305a\u3064\u306e\u767b\u9332\u30fb\u7ba1\u7406\u304c\u3067\u304d\u308b\u3088\u3046\u306b\u306a\u308a\u307e\u3059\u3002</p>\n' % (
+        escape(t_1(context.call(l_form, button_label=u'\u5909\u66f4'))), 
+    )
+
+blocks = {'content': block_content}
+debug_info = '1=8&2=14&3=19'

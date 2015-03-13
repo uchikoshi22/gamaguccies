@@ -1,0 +1,27 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <script language="javascript" type="text/javascript">
+  <!--
+  function setFormInput(val) {
+    window.opener.document.getElementById('f_source').innerHTML = val;
+    var current_value = window.opener.document.getElementById('f_source').value
+    window.opener.document.getElementById('f_source').value = val
+    window.close();
+  }
+  -->
+  </script>
+  <title>がまぐっち</title>
+</head>
+<body>
+  {% if source_list.sources %}
+    {% for source in source_list.sources %}
+      <a href="javascript:setFormInput('{{ source }}');">{{ source }}</a>
+    {% endfor %}
+  {% else %}
+    <p>まだ収入元が未登録です。</p>
+    <p>前の画面に戻って新しい場所を入力してください</p>
+  {% endif %}
+  <a href="#" onClick="window.close(); return false;">閉じる</a>
+</body>
+</html>

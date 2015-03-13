@@ -1,0 +1,30 @@
+{% extends "_manage.html" %}
+{%- block js %}
+  function new_notebook() {
+    location.href="new_notebook";
+  }
+
+{% endblock js -%}
+{% block content %}
+  {% if notebook_counter %}
+    {% for notebook in notebooks %}
+      <a href="/update_notebook?key={{ notebook.key().id() }}">
+        {{ notebook.name }}
+      </a>
+   
+      <a class="update" href="/update_notebook?key={{ notebook.key().id() }}">
+        更新
+      </a>
+      <a class="delete" onClick="return confirm('本当に削除しますか?')" href="/delete_notebook?key={{ notebook.key().id() }}">
+        × 削除
+      </a>
+      <p>１ヶ月でもらえる金額　： {{ notebook.in_goal }}円</p>
+      <p>１ヶ月で使う金額　： {{ notebook.out_goal }}円</p>
+      <hr />
+    {% endfor %}
+  {% else %}
+    <p>まだお小遣いノートが一冊も作られていません</p>
+    <p><a href="/new_notebook">こちらから</a>ノートを作ってください。</p>
+　　<input type="button" value="新しいノートを追加" onClick="new_notebook()" />
+  {% endif %}
+{% endblock content %}

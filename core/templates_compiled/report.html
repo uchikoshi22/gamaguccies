@@ -1,0 +1,50 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/report.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_notebook.html', '/report.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_content(context, environment=environment):
+    l_receipt_target = context.resolve('receipt_target')
+    l_notebook = context.resolve('notebook')
+    l_receipt_forecast = context.resolve('receipt_forecast')
+    l_out_goal = context.resolve('out_goal')
+    l_income_sum = context.resolve('income_sum')
+    l_receipt_ave = context.resolve('receipt_ave')
+    l_receipt_sum = context.resolve('receipt_sum')
+    if 0: yield None
+    yield u'\n<p>%s\u306e\u30ec\u30dd\u30fc\u30c8</p>\n' % (
+        escape(environment.getattr(l_notebook, 'name')), 
+    )
+    if l_out_goal:
+        if 0: yield None
+        yield u'\n  <p>\u3053\u306e%s\u3067\u306f1\u30f6\u6708\u3067%s\u5186\u4f7f\u3046\u4e88\u5b9a\u3067\u3059\u3002</p>\n  <p>1\u65e5\u5e73\u5747%s\u5186\u4ee5\u5185\u3067\u306e\u51fa\u8cbb\u3092\u76ee\u6a19\u3068\u3057\u307e\u3057\u3087\u3046</p>\n' % (
+            escape(environment.getattr(l_notebook, 'name')), 
+            escape(l_out_goal), 
+            escape(l_receipt_target), 
+        )
+    else:
+        if 0: yield None
+        yield u'\n  <p>\u307e\u30601\u30f6\u6708\u3067\u4f7f\u3046\u91d1\u984d\u3092\u8a2d\u5b9a\u3057\u3066\u3044\u307e\u305b\u3093\u3002</P>\n  <p><a href="/update_notebook?key=%s">1\u30f6\u6708\u3067\u4f7f\u3046\u91d1\u984d\u3092\u8a2d\u5b9a\u3057\u3066\u304f\u3060\u3055\u3044\u3002</a></p>\n' % (
+            escape(context.call(environment.getattr(context.call(environment.getattr(l_notebook, 'key')), 'id'))), 
+        )
+    yield u'\n<hr />\n<p>\u4eca\u6708\u4f7f\u3063\u305f\u304a\u91d1<p>\n<p>\n  %s\u5186&nbsp;\n  <span style="color: #808080; padding-left: 18px; font-size: 16px;">\n    \u5e73\u5747\u3000%s\u5186\uff0f\u65e5\n  <span style="color: #000000;">\uff1a</span>\n    \u4eca\u6708\u4f7f\u3046\u91d1\u984d\u4e88\u60f3\u3000%s\u5186\n  </span>\n</p>\n<p>\u4eca\u6708\u8cb0\u3063\u305f\u304a\u91d1</p>\n<p>%s\u5186</p>\n<hr />\n<p>\u25bc \u30b3\u30b3\u304b\u3089\u4e0b\u306f\u73fe\u5728\u958b\u767a\u4e2d\u3067\u3059\u3002</p>\n<p><a class="under_develop" href="#">\u5834\u6240\u5225\u306e\u51fa\u8cbb\u91d1\u984d\u8868</a></p>\n<p><a class="under_develop" href="#">\u51fa\u8cbb\u533a\u5206\u5225\u306e\u51fa\u8cbb\u91d1\u984d\u8868</a></p>\n<p><a class="under_develop" href="#">\u6708\u6b21\u30ec\u30dd\u30fc\u30c8</a></p>\n<p><a class="under_develop" href="#">\u9031\u6b21\u30ec\u30dd\u30fc\u30c8</a></p>\n<p>\u6c4e\u7528\u30c7\u30fc\u30bf</p>\n<p><a class="under_develop" href="#">\u51fa\u8cbb\u6c4e\u7528\u30c7\u30fc\u30bf</a></p>\n<p><a class="under_develop" href="#">\u5165\u91d1\u6c4e\u7528\u30c7\u30fc\u30bf</a></p>\n' % (
+        escape(l_receipt_sum), 
+        escape(l_receipt_ave), 
+        escape(l_receipt_forecast), 
+        escape(l_income_sum), 
+    )
+
+def block_js(context, environment=environment):
+    if 0: yield None
+    yield u'\n'
+
+blocks = {'content': block_content, 'js': block_js}
+debug_info = '1=8&4=14&5=24&6=26&7=29&8=31&9=35&11=36&12=38&16=39&18=40&20=41&24=42&2=45'

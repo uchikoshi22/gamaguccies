@@ -1,0 +1,27 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/list_ref_category.html'
+
+def root(context, environment=environment):
+    l_category_list = context.resolve('category_list')
+    if 0: yield None
+    yield u'<!doctype html>\n<head>\n  <meta charset="utf-8">\n  <script language="javascript" type="text/javascript">\n  <!--\n  function setFormInput(val) {\n    window.opener.document.getElementById(\'f_category\').innerHTML = val;\n    window.opener.document.getElementById(\'f_category\').value = val\n    window.close();\n  }\n  -->\n  </script>\n  <title>\u304c\u307e\u3050\u3063\u3061</title>\n</head>\n<body>\n  '
+    if environment.getattr(l_category_list, 'categories'):
+        if 0: yield None
+        yield u'\n    '
+        l_category = missing
+        for l_category in environment.getattr(l_category_list, 'categories'):
+            if 0: yield None
+            yield u'\n      <a href="javascript:setFormInput(\'%s\');">%s</a>\n    ' % (
+                escape(l_category), 
+                escape(l_category), 
+            )
+        l_category = missing
+        yield u'\n  '
+    else:
+        if 0: yield None
+        yield u'\n    <p>\u307e\u3060\u5546\u54c1\u5206\u985e\u304c\u672a\u767b\u9332\u3067\u3059\u3002</p>\n    <p>\u524d\u306e\u753b\u9762\u306b\u623b\u3063\u3066\u65b0\u3057\u3044\u5546\u54c1\u5206\u985e\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044</p>\n  '
+    yield u'\n  <a href="#" onClick="window.close(); return false;">\u9589\u3058\u308b</a>\n</body>\n</html>'
+
+blocks = {}
+debug_info = '1=8&16=9&17=13&18=16&19=20&20=23&23=24'

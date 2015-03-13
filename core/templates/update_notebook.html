@@ -1,0 +1,7 @@
+{% extends "_manage.html" %}
+{% block content %}
+  {{ form(button_label='変更') | safe }}
+  <p class="supplement">すべて後から変更が可能です。</p>
+  <p class="supplement">「メインで使う」にチェックをつけたらこのノートがメインのノートとして登録されます</p>
+  <p class="supplement">「明細も記録する」にチェックを付けたら出費の登録・管理でレシート単位だけでなく、商品一品ずつの登録・管理ができるようになります。</p>
+{% endblock content %}

@@ -1,0 +1,28 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/wall.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_base.html', '/wall.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_content(context, environment=environment):
+    l_nickname = context.resolve('nickname')
+    l_email = context.resolve('email')
+    if 0: yield None
+    yield u'\n  <p>%s\u306e\u304a\u5c0f\u9063\u3044\u5e33\u30ce\u30fc\u30c8</p>\n  <br />\n  <p>\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9\u306f%s\u3067\u3059\u306d\u3002</p>\n  <br />\n  <p>\u305f\u3060\u3044\u307e\u6e96\u5099\u4e2d\u3067\u3059\u3002</p>\n\n' % (
+        escape(l_nickname), 
+        escape(l_email), 
+    )
+
+def block_sidebar(context, environment=environment):
+    if 0: yield None
+    yield u'\n\n'
+
+blocks = {'content': block_content, 'sidebar': block_sidebar}
+debug_info = '1=8&6=14&7=19&9=20&2=23'

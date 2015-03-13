@@ -1,0 +1,37 @@
+{% extends "_base.html" %}
+{%- block js %}
+  function new_notebook() {
+    location.href="new_notebook";
+  }
+{% endblock -%}
+{% block sidebar %}
+  {% if notebook_counter < NOTEBOOK_LIMIT %}
+    <input type="button" value="新しいノートを追加" onClick="new_notebook()" />
+  {% else %}
+    <p>{{ NOTEBOOK_LIMIT }}册以上のノートは作れません。</p>
+  {% endif %}
+
+  {% if notebook_counter %}
+    <ul>
+    {% for notebook in notebooks %}
+      {% if notebook.is_main %}
+        <li>
+        <a href="/receipt?key={{notebook.key().id() }}">
+        {{ notebook.name }} *
+        </a>
+        </li>
+      {% else %}
+        <li>
+        <a href="/receipt?key={{ notebook.key().id() }}">
+        {{ notebook.name }}
+        </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>まだノートは作られていません。</p>
+  {% endif %}
+
+{% endblock sidebar %}
+

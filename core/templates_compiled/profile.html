@@ -1,0 +1,54 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/profile.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_base.html', '/profile.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_content(context, environment=environment):
+    l_profile = context.resolve('profile')
+    l_form = context.resolve('form')
+    l_owner = context.resolve('owner')
+    t_1 = environment.filters['safe']
+    if 0: yield None
+    yield u'\n  <h3>\u30d7\u30ed\u30d5\u30a3\u30fc\u30eb</h3>\n  <p>%s</p>\n  ' % (
+        escape(l_owner), 
+    )
+    if l_profile:
+        if 0: yield None
+        yield u'\n      '
+        def macro():
+            t_2 = []
+            l_form = context.resolve('form')
+            pass
+            t_2.extend((
+                u'\n      <div id="fieldWrapper">\n        ', 
+                escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'nickname'), 'label'), class_='Nickname'))), 
+                u'\n        <br />\n        ', 
+                escape(t_1(context.call(environment.getitem(l_form, 'nickname')))), 
+                u'\n      </div>\n      <p>\u95b2\u89a7\u53ef\u80fd\u8005\u3000(5\u4eba\u307e\u3067\u767b\u9332\u53ef\u80fd\u3067\u3059)</p>\n      <p>1 \n        <input type="email" name="manager1" value="', 
+                escape(environment.getitem(environment.getattr(l_profile, 'managers'), 0)), 
+                u'"/>\n      </p>\n      <p>2 \n        <input type="email" name="manager2" />\n      </p>\n      <p>3 <input type="email" name="manager3" /></p>\n      <p>4 <input type="email" name="manager4" /></p>\n      <p>5 <input type="email" name="manager5" /></p>\n      <br />\n      ', 
+                escape(t_1(context.call(environment.getattr(l_form, 'default_actions'), label=u'\u30d7\u30ed\u30d5\u30a3\u30fc\u30eb\u3092\u66f4\u65b0'))), 
+                u'\n      ', 
+            ))
+            return Markup(concat(t_2))
+        caller = Macro(environment, macro, None, (), (), False, False, False)
+        yield context.call(l_form, caller=caller)
+        yield u'\n\n      <br />\n      <p>\u95b2\u89a7\u8005\u306b\u306f\n        <a href="/%s">\n        http://gamaguccies.appspot.com/%s\n        </a>\n        \u306e\u30a2\u30c9\u30ec\u30b9\u3092\u4f1d\u3048\u3066\u304f\u3060\u3055\u3044\u3002\n\u3000\u3000\u3000\u3000</p>\n\n  ' % (
+            escape(environment.getattr(l_profile, 'nickname')), 
+            escape(environment.getattr(l_profile, 'nickname')), 
+        )
+    else:
+        if 0: yield None
+        yield u'\n    <p>\u307e\u3060\u30cb\u30c3\u30af\u30cd\u30fc\u30e0\u3068\u95b2\u89a7\u53ef\u80fd\u8005\u304c\u767b\u9332\u3055\u308c\u3066\u3044\u307e\u305b\u3093\u3002</p>\n    <p><a href="/add_profile">\u3053\u3061\u3089</a>\u304b\u3089\u30cb\u30c3\u30af\u30cd\u30fc\u30e0\u3068\u95b2\u89a7\u53ef\u80fd\u8005\u3092\u767b\u9332\u3057\u3066\u4e0b\u3055\u3044\u3002</p>\n  '
+    yield u'\n'
+
+blocks = {'content': block_content}
+debug_info = '1=8&2=14&4=21&5=23&6=26&8=32&10=34&14=36&23=38&6=43&24=44&28=45&29=46&34=50&37=51'

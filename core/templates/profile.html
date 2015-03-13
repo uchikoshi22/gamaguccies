@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+{% block content %}
+  <h3>プロフィール</h3>
+  <p>{{ owner }}</p>
+  {% if profile %}
+      {% call form() %}
+      <div id="fieldWrapper">
+        {{ form['nickname'].label(class_="Nickname")|safe }}
+        <br />
+        {{ form['nickname']()|safe() }}
+      </div>
+      <p>閲覧可能者　(5人まで登録可能です)</p>
+      <p>1 
+        <input type="email" name="manager1" value="{{ profile.managers[0] }}"/>
+      </p>
+      <p>2 
+        <input type="email" name="manager2" />
+      </p>
+      <p>3 <input type="email" name="manager3" /></p>
+      <p>4 <input type="email" name="manager4" /></p>
+      <p>5 <input type="email" name="manager5" /></p>
+      <br />
+      {{ form.default_actions(label="プロフィールを更新")|safe }}
+      {% endcall %}
+
+      <br />
+      <p>閲覧者には
+        <a href="/{{ profile.nickname }}">
+        http://gamaguccies.appspot.com/{{ profile.nickname }}
+        </a>
+        のアドレスを伝えてください。
+　　　　</p>
+
+  {% else %}
+    <p>まだニックネームと閲覧可能者が登録されていません。</p>
+    <p><a href="/add_profile">こちら</a>からニックネームと閲覧可能者を登録して下さい。</p>
+  {% endif %}
+{% endblock content%}

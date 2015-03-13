@@ -1,0 +1,16 @@
+{% extends "_manage.html" %}
+{% block submenu %}
+  {{ notebook.name }}
+  <ul class="submenu">
+    <li class="submenu">
+      <a href="/income?key={{ notebook.key().id() }}">収入</a>
+    </li>
+    <li class="submenu">
+      <a href="/receipt?key={{ notebook.key().id() }}">支出</a>
+    </li>
+    <li class="submenu"><a class="under_develop" href="#">お金の移動</a></li>
+    <li class="submenu">
+      <a href="/report?key={{ notebook.key().id() }}">レポート</a>
+    </li>
+  </ul>
+{% endblock submenu %}

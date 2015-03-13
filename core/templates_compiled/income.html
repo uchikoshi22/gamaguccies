@@ -1,0 +1,59 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/income.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_notebook.html', '/income.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_content(context, environment=environment):
+    l_form = context.resolve('form')
+    t_1 = environment.filters['safe']
+    if 0: yield None
+    yield u'\n  <!-- %s -->\n  ' % (
+        escape(t_1(context.call(l_form, button_label=u'\u53ce\u5165\u3092\u767b\u9332'))), 
+    )
+    def macro():
+        t_2 = []
+        l_notebook = context.resolve('notebook')
+        l_today = context.resolve('today')
+        pass
+        t_2.extend((
+            u'\n  <div class="fieldWrapper">\n  <input type="hidden" name="key" value="', 
+            escape(context.call(environment.getattr(context.call(environment.getattr(l_notebook, 'key')), 'id'))), 
+            u'" />\n  </div>\n  <div class="fieldWrapper">\n  <p>\u53ce\u5165\u30fb\u304a\u5c0f\u9063\u3044\u306e\u767b\u9332</p>\n  </div>\n  <div class="fieldWrapper">\n    <p>', 
+            escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'date'), 'label'), **{'class': 'Date', }))), 
+            u'</p>\n    <p>', 
+            escape(t_1(context.call(environment.getitem(l_form, 'date'), value_=l_today))), 
+            u'</p>\n  </div>\n  <div class="fieldWrapper">\n    <p>', 
+            escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'amount'), 'label'), **{'class': 'Amount', }))), 
+            u'</p>\n    <p>', 
+            escape(t_1(context.call(environment.getitem(l_form, 'amount'), value_=0))), 
+            u'</p>\n  </div>\n  <div id="source">\n  <div class="fieldWrapper">\n    <p>', 
+            escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'source'), 'label'), **{'class': 'Source', }))), 
+            u'&nbsp;\n       <a href="javascript:openwin()" class="ref">\u203b\u53c2\u7167</a>\n    </p>\n    <p>', 
+            escape(t_1(context.call(environment.getitem(l_form, 'source')))), 
+            u'</p>\n  </div>\n  </div>\n  <div class="fieldWrapper">\n    <p>', 
+            escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'memo'), 'label'), **{'class': 'Memo', }))), 
+            u'</p>\n    <p>', 
+            escape(t_1(context.call(environment.getitem(l_form, 'memo')))), 
+            u'</p>\n  </div>\n  <br />\n\n  ', 
+            escape(t_1(context.call(environment.getattr(l_form, 'default_actions'), label=u'\u53ce\u5165\u30fb\u304a\u5c0f\u9063\u3044\u3092\u767b\u9332'))), 
+            u'\n  ', 
+        ))
+        return Markup(concat(t_2))
+    caller = Macro(environment, macro, None, (), (), False, False, False)
+    yield context.call(l_form, caller=caller)
+    yield u'\n'
+
+def block_js(context, environment=environment):
+    if 0: yield None
+    yield u"\n<!--\nfunction openwin() {\n  window.open('./list_ref_source', '', 'width=500,height=400');\n}\n-->\n"
+
+blocks = {'content': block_content, 'js': block_js}
+debug_info = '1=8&9=14&10=19&11=21&13=28&19=30&20=32&23=34&24=36&28=38&31=40&35=42&36=44&40=46&11=51&41=52&2=54'

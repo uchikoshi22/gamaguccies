@@ -1,0 +1,13 @@
+{% extends "_base.html" %}
+{% block content %}
+  <p>{{ nickname }}のお小遣い帳ノートを見るために、</p>
+  <p>メールアドレスを入力してログインしてください。</p>
+  <br />
+  <form method="POST" action="./{{ nickname }}">
+  <p>メールアドレス</p>
+  <p><input type="email" name="email" /></p>
+  <br />
+  <p><input type="submit" value="ログイン" />
+  </form>
+
+{% endblock content%}

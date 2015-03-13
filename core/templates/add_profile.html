@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+{% block content %}
+  <h3>プロフィール登録</h3>
+  <p>あなたのニックネームと閲覧可能者を登録してください</p>
+  <br />
+  {% call form() %}
+  <div class="fieldWrapper">
+    {{ form['nickname'].label(class_="Nickname")|safe }}
+    <br />
+    {{ form['nickname']()|safe() }}
+  </div>
+  <br />
+  <p>閲覧可能者　(5人まで登録可能です)</p>
+  <p>1 <input type="email" name="manager1" /></p>
+  <p>2 <input type="email" name="manager2" /></p>
+  <p>3 <input type="email" name="manager3" /></p>
+  <p>4 <input type="email" name="manager4" /></p>
+  <p>5 <input type="email" name="manager5" /></p>
+  <br />
+  {{ form.default_actions(label="プロフィールを登録")|safe }}
+  {% endcall %}
+
+{% endblock content%}

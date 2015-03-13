@@ -1,0 +1,38 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/add_profile.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_base.html', '/add_profile.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_content(context, environment=environment):
+    l_form = context.resolve('form')
+    t_1 = environment.filters['safe']
+    if 0: yield None
+    yield u'\n  <h3>\u30d7\u30ed\u30d5\u30a3\u30fc\u30eb\u767b\u9332</h3>\n  <p>\u3042\u306a\u305f\u306e\u30cb\u30c3\u30af\u30cd\u30fc\u30e0\u3068\u95b2\u89a7\u53ef\u80fd\u8005\u3092\u767b\u9332\u3057\u3066\u304f\u3060\u3055\u3044</p>\n  <br />\n  '
+    def macro():
+        t_2 = []
+        l_form = context.resolve('form')
+        pass
+        t_2.extend((
+            u'\n  <div class="fieldWrapper">\n    ', 
+            escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'nickname'), 'label'), class_='Nickname'))), 
+            u'\n    <br />\n    ', 
+            escape(t_1(context.call(environment.getitem(l_form, 'nickname')))), 
+            u'\n  </div>\n  <br />\n  <p>\u95b2\u89a7\u53ef\u80fd\u8005\u3000(5\u4eba\u307e\u3067\u767b\u9332\u53ef\u80fd\u3067\u3059)</p>\n  <p>1 <input type="email" name="manager1" /></p>\n  <p>2 <input type="email" name="manager2" /></p>\n  <p>3 <input type="email" name="manager3" /></p>\n  <p>4 <input type="email" name="manager4" /></p>\n  <p>5 <input type="email" name="manager5" /></p>\n  <br />\n  ', 
+            escape(t_1(context.call(environment.getattr(l_form, 'default_actions'), label=u'\u30d7\u30ed\u30d5\u30a3\u30fc\u30eb\u3092\u767b\u9332'))), 
+            u'\n  ', 
+        ))
+        return Markup(concat(t_2))
+    caller = Macro(environment, macro, None, (), (), False, False, False)
+    yield context.call(l_form, caller=caller)
+    yield u'\n\n'
+
+blocks = {'content': block_content}
+debug_info = '1=8&2=14&6=19&8=25&10=27&20=29&6=34&21=35'

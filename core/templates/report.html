@@ -1,0 +1,34 @@
+{% extends "_notebook.html" %}
+{%- block js %}
+{% endblock js -%}
+{% block content %}
+<p>{{ notebook.name }}のレポート</p>
+{% if out_goal %}
+  <p>この{{ notebook.name }}では1ヶ月で{{ out_goal }}円使う予定です。</p>
+  <p>1日平均{{ receipt_target }}円以内での出費を目標としましょう</p>
+{% else %}
+  <p>まだ1ヶ月で使う金額を設定していません。</P>
+  <p><a href="/update_notebook?key={{ notebook.key().id() }}">1ヶ月で使う金額を設定してください。</a></p>
+{% endif %}
+<hr />
+<p>今月使ったお金<p>
+<p>
+  {{ receipt_sum }}円&nbsp;
+  <span style="color: #808080; padding-left: 18px; font-size: 16px;">
+    平均　{{ receipt_ave }}円／日
+  <span style="color: #000000;">：</span>
+    今月使う金額予想　{{ receipt_forecast }}円
+  </span>
+</p>
+<p>今月貰ったお金</p>
+<p>{{ income_sum }}円</p>
+<hr />
+<p>▼ ココから下は現在開発中です。</p>
+<p><a class="under_develop" href="#">場所別の出費金額表</a></p>
+<p><a class="under_develop" href="#">出費区分別の出費金額表</a></p>
+<p><a class="under_develop" href="#">月次レポート</a></p>
+<p><a class="under_develop" href="#">週次レポート</a></p>
+<p>汎用データ</p>
+<p><a class="under_develop" href="#">出費汎用データ</a></p>
+<p><a class="under_develop" href="#">入金汎用データ</a></p>
+{% endblock content %}

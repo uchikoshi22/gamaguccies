@@ -1,0 +1,42 @@
+{% extends "_notebook.html" %}
+{%- block js %}
+<!--
+function openwin() {
+  window.open('./list_ref_source', '', 'width=500,height=400');
+}
+-->
+{% endblock js -%}
+{% block content %}
+  <!-- {{ form(button_label='収入を登録') | safe }} -->
+  {% call form() %}
+  <div class="fieldWrapper">
+  <input type="hidden" name="key" value="{{ notebook.key().id() }}" />
+  </div>
+  <div class="fieldWrapper">
+  <p>収入・お小遣いの登録</p>
+  </div>
+  <div class="fieldWrapper">
+    <p>{{ form['date'].label(class="Date")|safe }}</p>
+    <p>{{ form['date'](value_=today)|safe() }}</p>
+  </div>
+  <div class="fieldWrapper">
+    <p>{{ form['amount'].label(class="Amount")|safe }}</p>
+    <p>{{ form['amount'](value_=0)|safe() }}</p>
+  </div>
+  <div id="source">
+  <div class="fieldWrapper">
+    <p>{{ form['source'].label(class="Source")|safe }}&nbsp;
+       <a href="javascript:openwin()" class="ref">※参照</a>
+    </p>
+    <p>{{ form['source']()|safe() }}</p>
+  </div>
+  </div>
+  <div class="fieldWrapper">
+    <p>{{ form['memo'].label(class="Memo")|safe }}</p>
+    <p>{{ form['memo']()|safe() }}</p>
+  </div>
+  <br />
+
+  {{ form.default_actions(label="収入・お小遣いを登録")|safe }}
+  {% endcall %}
+{% endblock content %}

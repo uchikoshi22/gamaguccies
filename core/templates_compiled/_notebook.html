@@ -1,0 +1,25 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/_notebook.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_manage.html', '/_notebook.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_submenu(context, environment=environment):
+    l_notebook = context.resolve('notebook')
+    if 0: yield None
+    yield u'\n  %s\n  <ul class="submenu">\n    <li class="submenu">\n      <a href="/income?key=%s">\u53ce\u5165</a>\n    </li>\n    <li class="submenu">\n      <a href="/receipt?key=%s">\u652f\u51fa</a>\n    </li>\n    <li class="submenu"><a class="under_develop" href="#">\u304a\u91d1\u306e\u79fb\u52d5</a></li>\n    <li class="submenu">\n      <a href="/report?key=%s">\u30ec\u30dd\u30fc\u30c8</a>\n    </li>\n  </ul>\n' % (
+        escape(environment.getattr(l_notebook, 'name')), 
+        escape(context.call(environment.getattr(context.call(environment.getattr(l_notebook, 'key')), 'id'))), 
+        escape(context.call(environment.getattr(context.call(environment.getattr(l_notebook, 'key')), 'id'))), 
+        escape(context.call(environment.getattr(context.call(environment.getattr(l_notebook, 'key')), 'id'))), 
+    )
+
+blocks = {'submenu': block_submenu}
+debug_info = '1=8&2=14&3=18&6=19&9=20&13=21'

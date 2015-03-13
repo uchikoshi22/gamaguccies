@@ -1,0 +1,47 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>がまぐっち</title>
+  {%- block css %}
+    <link href="stylesheets/base.css" rel="stylesheet" type="text/css" />
+  {% endblock css -%}
+  <script language="javascript" type="text/javascript" />
+  {%- block js %}
+  {% endblock js -%}
+  </script>
+  {%- block additional_headers %}
+  {% endblock additional_headers %}
+  <div id="body">
+  {%- block bodytag %}<body>{% endblock bodytag -%}
+    <div id="header">
+    {% block menu %}
+      <p class="title"><a href="/">がまぐっち</a></p>
+      <ul>
+        <li class="left"><a href="/">HOME</a></li>
+        <li><a href="/receipt">お小遣いノートの記録</a></li>
+        <li><a href="/notebooks">お小遣いノートの管理</a></li>
+        <li><a href="{{ create_logout_url() }}">ログアウト</a></li>
+      </ul>
+    {% endblock menu %}
+    </div> <!-- enddiv header -->
+    <div id="sidebar">
+    {% block sidebar %}
+      <a href="/profile">プロファイル</a>
+    {% endblock sidebar %}
+    </div> <!--enddiv sidbar -->
+    <div id="submenu">
+      {% block submenu %}
+      {% endblock submenu %}
+    </div> <!-- enddiv submenu -->
+    <div id="content">
+    {% block content %}
+    {% endblock content %}
+    </div> <!--enddiv content-->
+    <div id="footer">
+    {% block footer %} 
+    &copy; gamaguccies 2011
+    {% endblock footer %}
+    </div> <!--enddiv footer-->
+  </body>
+  </div> <!-- enddiv body -->
+</html>

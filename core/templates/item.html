@@ -1,0 +1,88 @@
+{% extends "_notebook.html" %}
+{%- block js %}
+<!--
+function openwin() {
+  window.open('./list_ref_category', '', 'width=500, height=400');
+}
+-->
+{% endblock js -%}
+{% block content %}
+  <table border="1">
+  <tr>
+    <th>日付</th><td>{{ receipt.date }}</td>
+    <th>金額</th><td>￥{{ receipt.sum }}</td>
+  </tr>
+  <tr>
+    <th>場所</th><td>{{ receipt.place }}</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>メモ</th><td colspan="3">{{ receipt.memo }}</td>
+  </tr>
+  </table>
+
+  <br />
+  <hr />
+
+  {% call form() %}
+  <div class="fieldWrapper">
+  <input type="hidden" name="key" value="{{ receipt.key().id() }}" />
+  </div>
+  <div class="fieldWrapper">
+  <p>レシートの内訳の登録</p>
+  </div>
+  <div class="fieldWrapper">
+  <p>{{ form['name'].label(class_="Name")|safe }}</p>
+  <p>{{ form['name']()|safe() }}</p>
+  </div>
+  <div class="fieldWrapper">
+  <p>{{ form['unit_price'].label(class_="UnitPrice")|safe }}</p>
+  <p>{{ form['unit_price']()|safe() }}</p>
+  </div>
+  <div class="fieldWrapper">
+  <p>{{ form['number'].label(class_="Number")|safe }}</p>
+  <p>{{ form['number']()|safe() }}</p>
+  </div>
+  <div class="fieldWrapper">
+  <p>{{ form['subtotal'].label(class_="Subtotal")|safe }}</p>
+  <p>{{ form['subtotal']()|safe() }}</p>
+  </div>
+  <div id="category">
+  <div class="fieldWrapper">
+  <p>{{ form['category'].label(class_="Category")|safe }}
+     <a href="javascript:openwin()" class="ref">※参照</a>
+  </p>
+  <p>{{ form['category']()|safe() }}</p>
+  </div>
+  </div>
+  <div class="fieldWrapper">
+  <p>{{ form['memo'].label(class_="Memo")|safe }}</p>
+  <p>{{ form['memo']()|safe() }}</p>
+  </div>
+  {{ form.default_actions(label="内訳を登録")|safe }}
+  {% endcall %}
+
+  {% if items %}
+    <br />
+    <hr />
+    <table>
+      <tr>
+        <th>商品名</th><th>単価</th><th>個数</th><th>小計</th>
+        <th>商品分類</th>
+      </tr>
+    {% for item in items %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>￥{{ item.unit_price }}</td>
+        <td>{{ item.number }}</td>
+        <td>￥{{ item.subtotal }}</td>
+        <td>{{ item.category }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+  {% else %}
+    <p>レシートの商品が登録されていません</p>
+  {% endif %}
+
+
+{% endblock content %}
